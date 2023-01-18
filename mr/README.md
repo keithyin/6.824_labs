@@ -15,7 +15,7 @@ reducer：master将对应key的文件名给 reducer，然后reducer会通过rpc�
 
 具体流程整理：
 
-1. 任务提交
+1. 任务提交（需要一个client进行任务提交，然后需要一个server对提交的任务分配master。）
 2. master根据mapper的个数进行文件切分，然后指定 <文件part，mapper>执行，并实时监控该mapper状态
 3. master通过rpc调用worker来执行对应的操作，worker操作的结果通过rpc返回给master。似乎很合理？感觉也不对，rpc调用岂不是  
 4. mapper执行完毕后，会根据hash(key)%reducerNum 来拆分文件，写在本机磁盘上，路径会上报给master
